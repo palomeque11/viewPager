@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ViewPagerTest</string>
+    <string name="price_format">%1$s USD</string>
+</resources>
