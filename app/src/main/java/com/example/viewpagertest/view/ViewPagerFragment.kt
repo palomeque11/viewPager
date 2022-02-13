@@ -1,12 +1,10 @@
 package com.example.viewpagertest.view
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.viewpagertest.databinding.SongsFragmentBinding
 import com.example.viewpagertest.model.remote.CATEGORIES
@@ -26,8 +24,6 @@ private val viewModel: SongsViewModel by lazy {
 }
 
 class ViewPagerFragment(private val playSongEvent: (SongItem) -> Unit) : Fragment() {
-    // When requested, this adapter returns a DemoObjectFragment,
-    // representing an object in the collection.
     private lateinit var demoCollectionAdapter: DemoCollectionAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,16 +43,6 @@ class ViewPagerFragment(private val playSongEvent: (SongItem) -> Unit) : Fragmen
             tab.text = CATEGORY_NAMES[position]
         }.attach()
     }
-
-    private fun requestData(pos: Int): Call<SongResponse> {
-
-        when (pos) {
-            0 -> return viewModel.getRockSongs()
-            1 -> return viewModel.getClassicSongs()
-            2 -> return viewModel.getPopSongs()
-            else -> return viewModel.getRockSongs()
-        }
-    }
 }
 
 class DemoCollectionAdapter(fragment: Fragment, private val playSongEvent: (SongItem) -> Unit) :
@@ -64,11 +50,6 @@ class DemoCollectionAdapter(fragment: Fragment, private val playSongEvent: (Song
 
 
     override fun getItemCount(): Int = CATEGORIES.size
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-
-    }
 
     override fun createFragment(position: Int): Fragment {
 

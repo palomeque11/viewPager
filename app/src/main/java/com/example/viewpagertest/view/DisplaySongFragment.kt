@@ -32,16 +32,11 @@ class DisplaySongFragment(private val playSongEvent: (SongItem) -> Unit) : Fragm
     }
 
     fun updateAdapter(dataSet: SongResponse) {
-                binding?.let {
-                    binding.songListResults.layoutManager = GridLayoutManager(context, 1)
-                    binding.songListResults.adapter = SongsAdapter(dataSet) {
-                        playSongEvent(it)
-                    }
-                }
+        binding?.let {
+            binding.songListResults.layoutManager = GridLayoutManager(context, 1)
+            binding.songListResults.adapter = SongsAdapter(dataSet) {
+                playSongEvent(it)
+            }
+        }
     }
-
-    fun setBackground(color: Int) {
-        binding?.songListResults?.background = ColorDrawable(color);
-    }
-
 }
